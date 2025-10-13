@@ -4,3 +4,19 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 18px;
+}
+
+.fuelConsumptionn {
+    display: flex;
+    flex-direction: column;
+    margin-left: 130px;
+    margin-top: -20px;
+}
