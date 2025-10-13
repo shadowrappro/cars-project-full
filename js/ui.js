@@ -29,7 +29,7 @@ export function ui(data) {
         elTrim.innerText = element.trim;
         elGeneration.innerText = element.generation;
         elYear.innerText = element.year;
-        elColor.innerText = element.color;
+        elColor.style.background = element.color;
         elColorName.innerText = element.colorName;
         elCategory.innerText = element.category;
         elDoorCount.innerText = element.doorCount;
