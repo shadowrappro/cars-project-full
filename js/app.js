@@ -1,4 +1,7 @@
-import { getAll } from "./request.js";
+import { checkAuth } from "./check-auth.js";
+import { deleteElementLocal, editElementLocal } from "./crud.js";
+import { changeLocalData, localData } from "./local-data.js";
+import { deleteElement, editedElement, getAll } from "./request.js";
 import { ui } from "./ui.js";
 
 
@@ -7,11 +10,17 @@ const elFilterTypeSelect = document.getElementById("filterTypeSelect")
 const elFilterValueSelect = document.getElementById("filterValueSelect")
 const elSearchInput = document.getElementById("searchInput")
 const elLoader = document.getElementById("loader")
+const elContainer = document.getElementById("carContainer")
+const elEditForm = document.getElementById("editForm");
+const elEditModal = document.getElementById("editModal");
+const elEditedElementTitle = document.getElementById("editedElementTitle")
 
 let backendData = null;
+let uiData = null
 let worker = new Worker("./worker.js");
 let filterKey = null;
 let filterValue = null;
+let editedElementId = null
 
 window.addEventListener("DOMContentLoaded", () => {
     if (window.navigator.onLine === false) {
@@ -28,7 +37,8 @@ window.addEventListener("DOMContentLoaded", () => {
     getAll()
     .then((res) => {
         backendData = res;
-        ui(backendData.data)
+        uiData = backendData.data
+        changeLocalData(uiData)
     })
     .catch((error) => {
         alert(error.message)
@@ -124,4 +134,76 @@ window.addEventListener("online", () => {
 window.addEventListener("offline", () => {
     elOfflinePage.classList.remove("hidden");
     elOfflinePage.classList.add("flex");
+})
+
+elContainer.addEventListener("click", (evt) => {
+    const target = evt.target;
+
+    // Info
+    if (target.classList.contains("js-info")) {
+        
+    }
+
+    // Edit
+    if (target.classList.contains("js-edit")) {
+        if (checkAuth()) {
+            if (confirm("Rostdan tahrirlamoqchimisiz?")) {
+                editedElementId = target.id
+                elEditModal.showModal()
+                const foundElement = localData.find((element) => element.id == target.id)
+                
+                elEditForm.name.value = foundElement.name;
+                elEditedElementTitle.innerText = foundElement.name
+                elEditForm.description.value = foundElement.description;
+            }
+        } else {
+            alert("Ro'yhatdan o'tishingiz kerak!");
+            window.location.href = "/pages/login.html"
+        }
+    }
+
+    // Delete
+    if (target.classList.contains("js-delete")) {
+        if (checkAuth()) {
+            if (confirm("Rostdan o'chirmoqchimisiz?")) {
+                target.innerHTML = "O'chirilmoda..."
+                deleteElement(target.id)
+                .then((id) => {
+                    deleteElementLocal(id)
+                })
+                .catch(() => {})
+                .finally(() => {})
+            }
+        } else {
+            alert("Ro'yhatdan o'tishingiz kerak!");
+            window.location.href = "/pages/login.html"
+        }
+    }
+})
+
+elEditForm.addEventListener("submit", (evt) => {
+    evt.preventDefault()
+
+
+    elEditedElementTitle.innerText = "Tahrirlanmoqda..."
+
+    const formData = new FormData(elEditForm);
+    const result = {};
+
+    formData.forEach((value, key) => {
+        result[key] = value;
+    })
+
+    if (editedElementId) {
+        result.id = editedElementId;
+        editedElement(result)
+        .then((res) => {
+            editElementLocal(res);
+        })
+        .catch(() => {})
+        .finally(() => {
+            editedElementId = null;
+            elEditModal.close()
+        })
+    }
 })

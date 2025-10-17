@@ -25,6 +25,11 @@ export function ui(data) {
         const elCountry = clone.querySelector(".country");
         const elDescription = clone.querySelector(".description");
 
+        // Buttons
+        const elDeleteBtn = clone.querySelector(".js-delete");
+        const elEditBtn = clone.querySelector(".js-edit");
+        const elInfoBtn = clone.querySelector(".js-info");
+
         elTitle.innerText = element.name;
         elTrim.innerText = element.trim;
         elGeneration.innerText = element.generation;
@@ -39,6 +44,11 @@ export function ui(data) {
         elEngine.innerText = element.engine;
         elHorsePower.innerText = element.horsepower;
         elFuelType.innerText = element.fuelType;
+        
+        //  ID
+        elDeleteBtn.id = element.id;
+        elEditBtn.id = element.id;
+        elInfoBtn.id = element.id;
 
         if (element.fuelConsumption) {
             const { city, highway, combined } = element.fuelConsumption;
