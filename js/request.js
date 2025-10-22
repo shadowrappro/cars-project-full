@@ -10,16 +10,6 @@ export async function getAll(query = "") {
     }
 }
 
-export async function getById(id) {
-    try {
-        const req = await fetch(baseURL + `/cars/${id}`)
-        const res = await req.json()
-        return res
-    } catch {
-        throw new Error("Ma'lumotni olishda xatolik bo'ldi")
-    }
-}
-
 export async function addElement(newData) {
     try {
         const token = localStorage.getItem("token")

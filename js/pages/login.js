@@ -1,3 +1,5 @@
+import { createToast } from "../toast.js";
+
 const elForm = document.getElementById("form");
 
 async function login(user) {
@@ -28,8 +30,12 @@ elForm.addEventListener("submit", (evt) => {
 
     login(result)
     .then((res) => {
-        localStorage.setItem("token", res.access_token)
-        window.location.href = "../../index.html"
+        createToast("true", "Hisobga muvaffaqiyatli kirildi!")
+        setTimeout(() => {
+            localStorage.setItem("token", res.access_token)
+            window.location.href = "../../index.html"
+        }, 2000)
+        
     })
     .catch(() => {})
     .finally(() => {});
