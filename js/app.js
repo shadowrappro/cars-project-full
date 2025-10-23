@@ -8,6 +8,16 @@ import { pagination, ui } from "./ui.js";
 const limit = 12;
 let skip = 0;
 
+// Channel for sync
+const channel1 =  new BroadcastChannel("channel_1")
+channel1.onmessage = (evt) => {
+    if (evt.data.action === "redirect") {
+        window.location.href = evt.data.address;
+    }
+}
+
+
+
 // let i = 114;
 
 // const interval = setInterval(() => {
@@ -191,14 +201,6 @@ window.addEventListener("offline", () => {
 
 elContainer.addEventListener("click", (evt) => {
     const target = evt.target;
-
-    // Info
-    // if (target.classList.contains("js-info")) {
-        
-    // }
-
-    // Edit
-
     // Delete
     if (target.classList.contains("js-delete")) {
         if (checkAuth()) {
@@ -212,6 +214,7 @@ elContainer.addEventListener("click", (evt) => {
             createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
             setTimeout(() => {
                 window.location.href = "/pages/register.html"
+                channel1.postMessage({action: "redirect", address: "/pages/register.html"})
             }, 2000)
         }
     }
