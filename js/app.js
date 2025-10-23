@@ -233,40 +233,6 @@ elContainer.addEventListener("click", (evt) => {
     }
 })
 
-// elEditForm.addEventListener("submit", (evt) => {
-//     evt.preventDefault()
-
-
-//     createToast("loading", "Ma'lumot tahrirlanmoqda")
-
-//     const formData = new FormData(elEditForm);
-//     const result = {};
-
-    
-//     formData.forEach((value, key) => {
-//         result[key] = value;
-//     })
-    
-
-//     if (editedElementId) {
-//         result.id = editedElementId;
-//         editedElement(result)
-//         .then((res) => {
-//             editElementLocal(res);
-//         })
-//         .catch(() => {})
-//         .finally(() => {
-//             editedElementId = null;
-//             elEditModal.close()
-//             createToast("true", "Ma'lumot muvaffaqiyatli tahrirlandi!")
-//         })
-//     }
-
-//     elEditForm.name.value = "";
-//     elEditForm.description.value = "";
-//     elEditedElementTitle.innerText = "Tahrirlash"
-// })
-
 // Pagination
 elPagination.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("js-page")) {
@@ -372,7 +338,9 @@ document.addEventListener("DOMContentLoaded", () => {
       generalValues[name] = value;
     }
 
-    if (errors.length) console.warn("Validation errors:", errors);
+    if (errors.length){
+        createToast("error", `${errors}`)
+    };
 
     generalValues.fuelConsumption = fuelConsumption;
 

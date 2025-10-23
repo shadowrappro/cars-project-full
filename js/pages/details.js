@@ -1,4 +1,7 @@
 import { checkAuth } from "../check-auth.js"
+import { editElementLocal } from "../crud.js"
+import { editedElement } from "../request.js"
+import { createToast } from "../toast.js"
 
 const elTitle = document.getElementById("name")
 const elTrim = document.getElementById("trim")
@@ -24,6 +27,8 @@ const elAslDet = document.getElementById("asldet")
 const elSkeletonDet = document.getElementById("skeletoon")
 const elEditButton = document.getElementById("editButton")
 const elEditModal = document.getElementById("editModal");
+const elEditForm = document.getElementById("editForm");
+let editedElementId = null;
 let elIDD = null;
 
 async function getById(id) {
@@ -115,7 +120,84 @@ elEditButton.addEventListener("click", () => {
   } else {
     createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
     setTimeout(() => {
-        window.location.href = "/pages/login.html"
+      window.location.href = "/pages/login.html"
     }, 2000)
   }
 })
+
+const form = document.getElementById("editForm");
+
+elEditForm.addEventListener("submit", function (e) {
+  e.preventDefault(); // submitni to'xtatish
+  const fd = new FormData(form);
+  const generalValues = {};
+  const fuelConsumption = {};
+  const errors = [];
+  const fuelFields = ["city", "highway", "combined"];
+  const numberFields = { year: { min: 1700, max: 2025 }, doorCount: { min: 1, max: 20 }, seatCount: { min: 1, max: 20 }, horsepower: { min: 1 } };
+  for (let [name, value] of fd.entries()) {
+    value = value.trim();
+    if (value === "" || value.toLowerCase() === "undefined" || value.toLowerCase() === "null") {
+      errors.push(`${name} kiritilmagan yoki noto'g'ri`);
+      continue;
+    }
+    if (fuelFields.includes(name)) {
+      fuelConsumption[name] = value;
+      continue;
+    }
+    if (numberFields[name]) {
+      const num = Number(value);
+      if (!Number.isFinite(num)) { errors.push(`${name} raqam bo'lishi kerak`); continue; }
+      if (numberFields[name].min !== undefined && num < numberFields[name].min) { errors.push(`${name} minimal ${numberFields[name].min}`); continue; }
+      if (numberFields[name].max !== undefined && num > numberFields[name].max) { errors.push(`${name} maksimal ${numberFields[name].max}`); continue; }
+      generalValues[name] = num;
+      continue;
+    }
+    generalValues[name] = value;
+  }
+  if (errors.length){
+    // createToast("error", `${errors}`)
+    console.log(errors);
+    
+  } else {
+    elEditModal.close()
+  }
+  generalValues.fuelConsumption = fuelConsumption;
+  editedElementId = elIDD;
+  if (editedElementId) {
+    generalValues.id = editedElementId;
+    createToast("loading", "Tahrirlanmoqda...")
+    editedElement(generalValues)
+    .then((res) => {
+        location.reload();
+        editElementLocal(res);
+    })
+    .catch(() => {})
+    .finally(() => {
+        editedElementId = null;
+        elEditModal.close()
+        createToast("true", "Ma'lumot muvaffaqiyatli tahrirlandi")
+    })
+  }
+  
+  elEditForm.name.value = "";
+  elEditForm.name.value = ""; 
+  elEditForm.description.value = "";
+  elEditForm.trim.value = "";
+  elEditForm.generation.value = "";
+  elEditForm.year.value = "";
+  elEditForm.color.value = "";
+  elEditForm.colorName.value = "";
+  elEditForm.category.value = "";
+  elEditForm.doorCount.value = "";
+  elEditForm.seatCount.value = "";
+  elEditForm.maxSpeed.value = "";
+  elEditForm.acceleration.value = "";
+  elEditForm.engine.value = ""; 
+  elEditForm.horsepower.value = ""; 
+  elEditForm.fuelType.value = ""; 
+  elEditForm.country.value = "";
+  elEditForm.city.value = "";
+  elEditForm.highway.value = "";
+  elEditForm.combined.value = "";
+});
