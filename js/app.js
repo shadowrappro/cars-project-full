@@ -14,6 +14,18 @@ channel1.onmessage = (evt) => {
     if (evt.data.action === "redirect") {
         window.location.href = evt.data.address;
     }
+
+    if (evt.data.action === "DELETE") {
+        deleteElementLocal(evt.data.address);
+    }
+    
+    if (evt.data.action === "reload-index") {
+        location.reload();
+    }
+
+    if (evt.data.action === "ADD") {
+        location.reload();
+    }
 }
 
 
@@ -257,6 +269,7 @@ elAnswerModal.addEventListener("click", (evt) => {
         .then((id) => {
             deleteToast()
             deleteElementLocal(id)
+            channel1.postMessage({action: "DELETE", address: id})
             createToast("true", "Ma'lumot muvaffaqiyatli o'chirildi")
         })
         .catch((error) => {
@@ -335,6 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createToast("loading", "Qo'shilmoqda")
     addElement(generalValues)
     .then((res) => {
+        channel1.postMessage({action: "ADD"})
         return res.json()
     })
     .catch((error) => {

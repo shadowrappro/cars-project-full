@@ -36,13 +36,13 @@ export function ui(data) {
         // elColor.style.background = element.color;
         const color = element.color;
 
-    if (color && color.startsWith("#")) {
-        elColor.style.background = color;
-        elColor.innerText = ""; // yozuv chiqmasin
-    } else {
-        elColor.classList.remove("color")
-        elColor.innerText = "no-data";
-    }
+        if (color && color.startsWith("#")) {
+            elColor.style.background = color;
+            elColor.innerText = ""; // yozuv chiqmasin
+        } else {
+            elColor.classList.remove("color")
+            elColor.innerText = "no-data";
+        }
 
         // Max Speed
         const maxSpeedTrimmed = element.maxSpeed?.trim() || "";

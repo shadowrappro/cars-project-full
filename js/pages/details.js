@@ -201,6 +201,8 @@ elEditForm.addEventListener("submit", function (e) {
     editedElement(generalValues)
     .then((res) => {
         location.reload();
+        channel1.postMessage({ action: "reload-index" });
+
         editElementLocal(res);
     })
     .catch(() => {})
