@@ -31,15 +31,17 @@ elForm.addEventListener("submit", (evt) => {
     
 
     createToast("loading", "Ma'lumotlaringiz yuborildi")
-    // register(result)
-    // .then((res) => {
-    //     createToast("true", "Hisobga muvaffaqiyatli kirildi!")
-    //     setTimeout(() => {
-    //         localStorage.setItem("token", res.access_token)
-    //         window.location.href = "../../index.html"
-    //     }, 2000)
-        
-    // })
-    // .catch(() => {})
-    // .finally(() => {});
+    register(result)
+    .then(() => {
+        createToast("true", "Hisobga muvaffaqiyatli kirildi!")
+        setTimeout(() => {
+            window.location.href = "../../pages/login.html"
+        }, 2000)
+    })
+    .catch((error) => {
+        console.log(error.message);
+        createToast("error", "Ro'yhatdan o'tish xato")
+    })
+    .finally(() => {
+    });
 })

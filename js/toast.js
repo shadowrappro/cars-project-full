@@ -38,8 +38,8 @@ export function createToast(mode, message) {
 
         pTime.textContent = i;
         
-        if (i == -2) {
-            elToastContainer.remove(li);
+        if (i == 0) {
+            elToastContainer.removeChild(li);
         }
     }, 1000)
 

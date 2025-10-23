@@ -80,7 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .then((res) => {
         pagination(res.total, res.limit, res.skip);
         changeLocalData(res.data)
-        createToast("true" ,"Ma'lumotlar muvaffaqiyatli keldi")
+        createToast("true" ,"muvaffaqiyatli keldi")
     }) 
     .catch((error) => {
         elNoData.classList.remove("hidden")
@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   elEditForm.addEventListener("submit", function (e) {
     elEditModal.close()
-    e.preventDefault(); // submitni to'xtatish
+    e.preventDefault();
 
     const fd = new FormData(form);
     const generalValues = {};
@@ -328,16 +328,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     generalValues.fuelConsumption = fuelConsumption;
 
-    createToast("loading", "Yangi mashina qo'shilmoqda")
+    createToast("loading", "Qo'shilmoqda")
     addElement(generalValues)
     .then((res) => {
-        res.json()
+        return res.json()
     })
     .catch((error) => {
         console.log(error.message);
     })
     .finally(() => {
-        createToast("true" ,"Mashina oxirgi sahifaga muvaffaqiyatli")
+        createToast("true" ,"Mashina oxirgi sahifaga qo'shildi")
     })
     
     elEditForm.name.value = "";
@@ -346,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
     elEditForm.trim.value = "";
     elEditForm.generation.value = "";
     elEditForm.year.value = "";
+    elEditForm.color.value = "";
     elEditForm.colorName.value = "";
     elEditForm.category.value = "";
     elEditForm.doorCount.value = "";
@@ -356,5 +357,8 @@ document.addEventListener("DOMContentLoaded", () => {
     elEditForm.horsepower.value = ""; 
     elEditForm.fuelType.value = ""; 
     elEditForm.country.value = "";
+    elEditForm.city.value = "";
+    elEditForm.highway.value = "";
+    elEditForm.combined.value = "";
   });
 });
