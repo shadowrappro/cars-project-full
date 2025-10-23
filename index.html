@@ -14,15 +14,6 @@
     </ul>
   </div>
 
-  <div id="answerModal" class="hidden">
-    <p>Rostdan ham o'chirmoqchimisiz?</p>
-    
-    <span class="answer-buttons">
-      <button class="btn btn-success js-xa">Xa</button>
-      <button class="btn btn-error js-yoq">Yo'q</button>
-    </span>
-  </div>
-
     <!-- Error for Network -->
     <div id="networkError" class="hidden container fixed bg-red-600 items-center justify-between text-white p-[10px] z-[990]">
         <h3>Internet bilan bog'liq muammo bor!</h3>
@@ -63,11 +54,24 @@
                   <kbd class="kbd kbd-sm">⌘</kbd>
                   <kbd class="kbd kbd-sm">K</kbd>
                 </label>
+
+                <button id="addButton" class="addCarButton">Add car</button>
             </div>
 
             <div class="grid grid-cols-3 gap-5" id="carContainer"></div>
+
+            
         </div>
     </section>
+
+    <div id="answerModal" class="hidden container">
+      <p>Rostdan ham o'chirmoqchimisiz?</p>
+      
+      <span class="answer-buttons">
+        <button class="btn btn-success js-xa">Xa</button>
+        <button class="btn btn-error js-yoq">Yo'q</button>
+      </span>
+    </div>
 
     <!-- Skeleton (Loader) -->
     <div class="grid-cols-3 gap-5 container" id="loader">
@@ -197,10 +201,28 @@
     <dialog id="editModal" class="modal">
       <div class="modal-box">
         <h3 class="text-lg font-bold" id="editedElementTitle"></h3>
-        <p class="py-4">Siz shu elementni tahrirlayapsiz!</p>
+        <p class="py-4">Yangi mashina qo'shmoqdasiz</p>
         <form id="editForm">
           <input type="text" name="name" placeholder="Mashina nomi" class="input" />
-          <textarea class="textarea" name="description" placeholder="Description"></textarea>
+          <input type="text" name="trim" placeholder="Mashina qanday jihozlangan?" class="input" />
+          <input type="text" name="generation" placeholder="Generation" class="input" />
+          <input type="number" name="year" placeholder="Mashina yili" class="input" />
+          <input type="text" name="color" placeholder="Mashina rang kodi" class="input" />
+          <input type="text" name="colorName" placeholder="Rangining nomi" class="input" />
+          <input type="text" name="category" placeholder="Mashina kategoriyasi" class="input" />
+          <input type="number" name="doorCount" placeholder="Eshiklar soni" class="input" />
+          <input type="number" name="seatCount" placeholder="O'rindiqlar soni" class="input" />
+          <input type="text" name="maxSpeed" placeholder="Eng yuqori tezligi" class="input" />
+          <input type="text" name="acceleration" placeholder="Tezlanish 0/100km/h" class="input" />
+          <input type="text" name="engine" placeholder="Dvigatel" class="input" />
+          <input type="number" name="horsepower" placeholder="Ot kuchi" class="input" />
+          <input type="text" name="fuelType" placeholder="Yoqilg'i turi" class="input" />
+          <span>Yoqilg'i sarfi:</span>
+          <input type="text" name="city" placeholder="Shahar ichida" class="input" />
+          <input type="text" name="highway" placeholder="Avtomagistralda" class="input" />
+          <input type="text" name="combined" placeholder="Aralash" class="input" />
+          <input type="text" name="country" placeholder="Davlati" class="input" />
+          <textarea class="textarea" name="description" placeholder="Qisqacha izoh"></textarea>
 
           <button class="btn btn-active" type="submit">Tasdiqlash</button>
         </form>

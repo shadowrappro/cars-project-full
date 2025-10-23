@@ -78,8 +78,11 @@ export function ui(data) {
         elEditBtn.id = element.id;
         elInfoBtn.href = `/pages/details.html?id=${element.id}`;
 
-        // elDescription.innerText = element.description;
-        elDescription.innerText = element.description.length > 0 ? element.description : "no-data";
+        if (!element.description || element.description.trim() === "") {
+           elDescription.innerText = "no-data" 
+        } else {
+            elDescription.innerText = element.description
+        }
 
         elContainer.appendChild(clone);
     });

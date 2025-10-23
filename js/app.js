@@ -1,7 +1,7 @@
 import { checkAuth } from "./check-auth.js";
 import { deleteElementLocal, editElementLocal } from "./crud.js";
 import { changeLocalData, localData } from "./local-data.js";
-import { deleteElement, editedElement, getAll } from "./request.js";
+import { addElement, deleteElement, editedElement, getAll } from "./request.js";
 import { createToast, deleteToast } from "./toast.js";
 import { pagination, ui } from "./ui.js";
 
@@ -42,6 +42,7 @@ const elPagination = document.getElementById("pagination");
 const elNoDataInfo = document.getElementById("noDataInfo")
 const elNoData = document.getElementById("noData")
 const elAnswerModal = document.getElementById("answerModal")
+const elAddButton = document.getElementById("addButton")
 
 let backendData = null;
 let uiData = null
@@ -198,20 +199,20 @@ elContainer.addEventListener("click", (evt) => {
 
     // Edit
     if (target.classList.contains("js-edit")) {
-        if (checkAuth()) {
-            editedElementId = target.id
-            elEditModal.showModal()
-            const foundElement = localData.find((element) => element.id == target.id)
+        // if (checkAuth()) {
+        //     editedElementId = target.id
+        //     elEditModal.showModal()
+        //     const foundElement = localData.find((element) => element.id == target.id)
             
-            elEditForm.name.value = foundElement.name;
-            elEditedElementTitle.innerText = foundElement.name
-            elEditForm.description.value = foundElement.description;
-        } else {
-            createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
-            setTimeout(() => {
-                window.location.href = "/pages/login.html"
-            }, 2000)
-        }
+        //     elEditForm.name.value = foundElement.name;
+        //     elEditedElementTitle.innerText = foundElement.name
+        //     elEditForm.description.value = foundElement.description;
+        // } else {
+        //     createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
+        //     setTimeout(() => {
+        //         window.location.href = "/pages/login.html"
+        //     }, 2000)
+        // }
     }
 
     // Delete
@@ -232,39 +233,39 @@ elContainer.addEventListener("click", (evt) => {
     }
 })
 
-elEditForm.addEventListener("submit", (evt) => {
-    evt.preventDefault()
+// elEditForm.addEventListener("submit", (evt) => {
+//     evt.preventDefault()
 
 
-    createToast("loading", "Ma'lumot tahrirlanmoqda")
+//     createToast("loading", "Ma'lumot tahrirlanmoqda")
 
-    const formData = new FormData(elEditForm);
-    const result = {};
+//     const formData = new FormData(elEditForm);
+//     const result = {};
 
     
-    formData.forEach((value, key) => {
-        result[key] = value;
-    })
+//     formData.forEach((value, key) => {
+//         result[key] = value;
+//     })
     
 
-    if (editedElementId) {
-        result.id = editedElementId;
-        editedElement(result)
-        .then((res) => {
-            editElementLocal(res);
-        })
-        .catch(() => {})
-        .finally(() => {
-            editedElementId = null;
-            elEditModal.close()
-            createToast("true", "Ma'lumot muvaffaqiyatli tahrirlandi!")
-        })
-    }
+//     if (editedElementId) {
+//         result.id = editedElementId;
+//         editedElement(result)
+//         .then((res) => {
+//             editElementLocal(res);
+//         })
+//         .catch(() => {})
+//         .finally(() => {
+//             editedElementId = null;
+//             elEditModal.close()
+//             createToast("true", "Ma'lumot muvaffaqiyatli tahrirlandi!")
+//         })
+//     }
 
-    elEditForm.name.value = "";
-    elEditForm.description.value = "";
-    elEditedElementTitle.innerText = "Tahrirlash"
-})
+//     elEditForm.name.value = "";
+//     elEditForm.description.value = "";
+//     elEditedElementTitle.innerText = "Tahrirlash"
+// })
 
 // Pagination
 elPagination.addEventListener("click", (evt) => {
@@ -320,3 +321,88 @@ elAnswerModal.addEventListener("click", (evt) => {
         deleteElementId = null;
     }
 })
+
+
+// Add modal
+elAddButton.addEventListener("click", () => {
+    if (checkAuth()) {
+        elEditModal.showModal()
+    } else {
+        createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
+        setTimeout(() => {
+            window.location.href = "/pages/login.html"
+        }, 2000)
+    }
+})
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("editForm");
+
+  elEditForm.addEventListener("submit", function (e) {
+    elEditModal.close()
+    e.preventDefault(); // submitni to'xtatish
+
+    const fd = new FormData(form);
+    const generalValues = {};
+    const fuelConsumption = {};
+    const errors = [];
+
+    const fuelFields = ["city", "highway", "combined"];
+    const numberFields = { year: { min: 1700, max: 2025 }, doorCount: { min: 1, max: 20 }, seatCount: { min: 1, max: 20 }, horsepower: { min: 1 } };
+
+    for (let [name, value] of fd.entries()) {
+      value = value.trim();
+      if (value === "" || value.toLowerCase() === "undefined" || value.toLowerCase() === "null") {
+        errors.push(`${name} kiritilmagan yoki noto'g'ri`);
+        continue;
+      }
+      if (fuelFields.includes(name)) {
+        fuelConsumption[name] = value;
+        continue;
+      }
+      if (numberFields[name]) {
+        const num = Number(value);
+        if (!Number.isFinite(num)) { errors.push(`${name} raqam bo'lishi kerak`); continue; }
+        if (numberFields[name].min !== undefined && num < numberFields[name].min) { errors.push(`${name} minimal ${numberFields[name].min}`); continue; }
+        if (numberFields[name].max !== undefined && num > numberFields[name].max) { errors.push(`${name} maksimal ${numberFields[name].max}`); continue; }
+        generalValues[name] = num;
+        continue;
+      }
+      generalValues[name] = value;
+    }
+
+    if (errors.length) console.warn("Validation errors:", errors);
+
+    generalValues.fuelConsumption = fuelConsumption;
+
+    createToast("loading", "Yangi mashina qo'shilmoqda")
+    addElement(generalValues)
+    .then((res) => {
+        res.json()
+    })
+    .catch((error) => {
+        console.log(error.message);
+    })
+    .finally(() => {
+        createToast("true" ,"Mashina muvaffaqiyatli qo'shildi")
+    })
+    
+    elEditForm.name.value = "";
+    elEditForm.name.value = ""; 
+    elEditForm.description.value = "";
+    elEditForm.trim.value = "";
+    elEditForm.generation.value = "";
+    elEditForm.year.value = "";
+    elEditForm.colorName.value = "";
+    elEditForm.category.value = "";
+    elEditForm.doorCount.value = "";
+    elEditForm.seatCount.value = "";
+    elEditForm.maxSpeed.value = "";
+    elEditForm.acceleration.value = "";
+    elEditForm.engine.value = ""; 
+    elEditForm.horsepower.value = ""; 
+    elEditForm.fuelType.value = ""; 
+    elEditForm.country.value = "";
+  });
+});

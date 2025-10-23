@@ -1,3 +1,5 @@
+import { checkAuth } from "../check-auth.js"
+
 const elTitle = document.getElementById("name")
 const elTrim = document.getElementById("trim")
 const elGeneration = document.getElementById("generation")
@@ -20,6 +22,8 @@ const elDescription = document.getElementById("description")
 const elID = document.getElementById("id")
 const elAslDet = document.getElementById("asldet")
 const elSkeletonDet = document.getElementById("skeletoon")
+const elEditButton = document.getElementById("editButton")
+const elEditModal = document.getElementById("editModal");
 let elIDD = null;
 
 async function getById(id) {
@@ -78,7 +82,13 @@ function ui(data) {
   set(elCombined, data?.fuelConsumption?.combined);
 
   // color style
-  elColor.style.background = data.color || "no-data";
+  if (data.color.startsWith("#")) {
+    elColor.style.background = data.color
+  } else {
+    elColor.style.borderRadius = "1px";
+    elColor.style.width = "56px"
+    elColor.innerText = "no-data"
+  }
 }
 
 
@@ -97,4 +107,15 @@ window.addEventListener("DOMContentLoaded", () => {
     })
 
 
+})
+
+elEditButton.addEventListener("click", () => {
+  if (checkAuth()) {
+    elEditModal.showModal()
+  } else {
+    createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
+    setTimeout(() => {
+        window.location.href = "/pages/login.html"
+    }, 2000)
+  }
 })

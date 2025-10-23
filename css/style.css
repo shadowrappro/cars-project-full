@@ -750,3 +750,32 @@ form button:active {
     font-size: 15px;
   }
 }
+
+
+#answerModal {
+  margin-top: 40px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: rgba(255,255,255,0.03);
+  border: rgba(255,255,255,0.06) 2px solid;
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.addCarButton {
+  background-color: rgba(255,255,255,0.03);
+  border: rgba(255,255,255,0.06) 2px solid;
+  width: 150px;
+  padding: 5px;
+  border-radius: 11px;
+}
+
+.addCarButton:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.219);
+  transition: 0.5s ease;
+}
