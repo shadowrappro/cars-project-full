@@ -1,6 +1,12 @@
 import { createToast } from "../toast.js";
 
 const elForm = document.getElementById("form");
+const channel1 =  new BroadcastChannel("channel_1")
+channel1.onmessage = (evt) => {
+    if (evt.data.action === "redirect") {
+        window.location.href = evt.data.address;
+    }
+}
 
 async function register(user) {
     try {
@@ -36,6 +42,7 @@ elForm.addEventListener("submit", (evt) => {
         createToast("true", "Hisobga muvaffaqiyatli kirildi!")
         setTimeout(() => {
             window.location.href = "../../pages/login.html"
+            channel1.postMessage({action: "redirect", address: "../../index.html"})
         }, 2000)
     })
     .catch((error) => {

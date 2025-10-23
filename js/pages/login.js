@@ -1,6 +1,12 @@
 import { createToast } from "../toast.js";
 
 const elForm = document.getElementById("form");
+const channel1 =  new BroadcastChannel("channel_1")
+channel1.onmessage = (evt) => {
+    if (evt.data.action === "redirect") {
+        window.location.href = evt.data.address;
+    }
+}
 
 async function login(user) {
     try {
@@ -35,6 +41,7 @@ elForm.addEventListener("submit", (evt) => {
         setTimeout(() => {
             localStorage.setItem("token", res.access_token)
             window.location.href = "../../index.html"
+            channel1.postMessage({action: "redirect", address: "../../index.html"})
         }, 2000)
         
     })

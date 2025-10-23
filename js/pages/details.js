@@ -32,6 +32,13 @@ let editedElementId = null;
 let findEl = null;
 let elIDD = null;
 
+const channel1 =  new BroadcastChannel("channel_1")
+channel1.onmessage = (evt) => {
+    if (evt.data.action === "redirect") {
+        window.location.href = evt.data.address;
+    }
+}
+
 async function getById(id) {
     elIDD = id;
     document.title = "Yuklanmoqda..."
@@ -144,6 +151,7 @@ elEditButton.addEventListener("click", () => {
     createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
     setTimeout(() => {
       window.location.href = "/pages/register.html"
+      channel1.postMessage({action: "redirect", address: "/pages/register.html"})
     }, 2000)
   }
 })

@@ -284,6 +284,7 @@ elAddButton.addEventListener("click", () => {
         createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
         setTimeout(() => {
             window.location.href = "/pages/register.html"
+            channel1.postMessage({action: "redirect", address: "/pages/register.html"})
         }, 2000)
     }
 })

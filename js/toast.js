@@ -21,8 +21,8 @@ export function createToast(mode, message) {
         li.classList.add("toast-true")
         li.appendChild(p)
         li.appendChild(span)
-    } else if(mode === "toast-error") {
-        li.classList.add("error")
+    } else if(mode === "error") {
+        li.classList.add("toast-error")
         li.appendChild(p)
         li.appendChild(span)
     } else if(mode === "loading") {
