@@ -38,7 +38,7 @@ export function createToast(mode, message) {
 
         pTime.textContent = i;
         
-        if (i == 0) {
+        if (i == -2) {
             elToastContainer.remove(li);
         }
     }, 1000)

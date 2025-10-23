@@ -29,6 +29,7 @@ const elEditButton = document.getElementById("editButton")
 const elEditModal = document.getElementById("editModal");
 const elEditForm = document.getElementById("editForm");
 let editedElementId = null;
+let findEl = null;
 let elIDD = null;
 
 async function getById(id) {
@@ -62,6 +63,7 @@ function set(el, value) {
 
 
 function ui(data) {
+  findEl = data
   document.title = data.name;
 
   set(elTitle, data.name);
@@ -115,12 +117,33 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 elEditButton.addEventListener("click", () => {
+  elEditForm.name.value = findEl.name; 
+  elEditForm.description.value = findEl.description;
+  elEditForm.trim.value = findEl.trim;
+  elEditForm.generation.value = findEl.generation;
+  elEditForm.year.value = findEl.year;
+  elEditForm.color.value = findEl.color;
+  elEditForm.colorName.value = findEl.colorName;
+  elEditForm.category.value = findEl.category;
+  elEditForm.doorCount.value = findEl.doorCount;
+  elEditForm.seatCount.value = findEl.seatCount;
+  elEditForm.maxSpeed.value = findEl.maxSpeed;
+  elEditForm.acceleration.value = findEl.acceleration;
+  elEditForm.engine.value = findEl.engine; 
+  elEditForm.horsepower.value = findEl.horsepower; 
+  elEditForm.fuelType.value = findEl.fuelType; 
+  elEditForm.country.value = findEl.country;
+  const {city, highway, combined} = findEl.fuelConsumption;
+  elEditForm.city.value = city;
+  elEditForm.highway.value = highway;
+  elEditForm.combined.value = combined;
+  
   if (checkAuth()) {
     elEditModal.showModal()
   } else {
     createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
     setTimeout(() => {
-      window.location.href = "/pages/login.html"
+      window.location.href = "/pages/register.html"
     }, 2000)
   }
 })

@@ -271,34 +271,33 @@ label.input input[type="search"] {
 /* --- Toast --- */
 #toast {
   position: fixed;
-  right: 20px;
-  top: 20px;
+  right: 10px;
+  top: 10px;
   z-index: 1800 !important;
 }
-.toast-container {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.toast-container li {
-  color: #e6eef6;
-  padding: 10px 14px;
-  border-radius: 10px;
-  margin-top: 8px;
-  box-shadow: 0 8px 20px rgba(2,6,23,0.6);
-  border: 1px solid rgba(255,255,255,0.03);
+
+.toastli {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  border-radius: 8px;
+  justify-content: space-between;
+  padding: 15px;
+  width: 300px;
+  transition: transform 1s ease; /* <-- transitionni bu yerga qo‘shish */
 }
 
+
 .true {
-    background-color: rgba(1, 82, 1, 0.637) !important;
+  background-color: rgba(1, 82, 1, 0.747) !important;
 }
 
 .error {
-    background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 0, 0);
 }
 
 .loadingToast{
-    background-color: rgba(255, 166, 0, 0.733);
+  background-color: rgba(255, 166, 0, 0.836);
 }
 
 
@@ -471,7 +470,7 @@ dialog[open] {
 
 
 .skeleton-card {
-  width: 100%;
+  width: 260px;
   min-height: 180px;
   background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
   border-radius: 14px;
@@ -777,5 +776,17 @@ form button:active {
 .addCarButton:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.219);
+  transition: 0.5s ease;
+}
+
+.allaqachon {
+  color: gray;
+  width: fit-content;
+  position: relative;
+  text-align: end;
+}
+
+.allaqachon:hover {
+  color: white;
   transition: 0.5s ease;
 }

@@ -15,7 +15,6 @@ export function ui(data) {
 
         // Buttons
         const elDeleteBtn = clone.querySelector(".js-delete");
-        const elEditBtn = clone.querySelector(".js-edit");
         const elInfoBtn = clone.querySelector(".js-info");
 
         // elTitle.innerText = element.name;
@@ -75,7 +74,6 @@ export function ui(data) {
         
         //  ID
         elDeleteBtn.id = element.id;
-        elEditBtn.id = element.id;
         elInfoBtn.href = `/pages/details.html?id=${element.id}`;
 
         if (!element.description || element.description.trim() === "") {

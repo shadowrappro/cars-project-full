@@ -75,7 +75,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })
     .finally(() => {
     })
-
+    createToast("loading", "Ma'lumotlar kutilmoqda")
     getAll(`?limit=${limit}&skip=${skip}`)
     .then((res) => {
         pagination(res.total, res.limit, res.skip);
@@ -198,22 +198,6 @@ elContainer.addEventListener("click", (evt) => {
     // }
 
     // Edit
-    if (target.classList.contains("js-edit")) {
-        // if (checkAuth()) {
-        //     editedElementId = target.id
-        //     elEditModal.showModal()
-        //     const foundElement = localData.find((element) => element.id == target.id)
-            
-        //     elEditForm.name.value = foundElement.name;
-        //     elEditedElementTitle.innerText = foundElement.name
-        //     elEditForm.description.value = foundElement.description;
-        // } else {
-        //     createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
-        //     setTimeout(() => {
-        //         window.location.href = "/pages/login.html"
-        //     }, 2000)
-        // }
-    }
 
     // Delete
     if (target.classList.contains("js-delete")) {
@@ -227,7 +211,7 @@ elContainer.addEventListener("click", (evt) => {
         } else {
             createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
             setTimeout(() => {
-                window.location.href = "/pages/login.html"
+                window.location.href = "/pages/register.html"
             }, 2000)
         }
     }
@@ -296,7 +280,7 @@ elAddButton.addEventListener("click", () => {
     } else {
         createToast("error" ,"Ro'yhatdan o'tishingiz kerak!")
         setTimeout(() => {
-            window.location.href = "/pages/login.html"
+            window.location.href = "/pages/register.html"
         }, 2000)
     }
 })
@@ -353,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(error.message);
     })
     .finally(() => {
-        createToast("true" ,"Mashina muvaffaqiyatli qo'shildi")
+        createToast("true" ,"Mashina oxirgi sahifaga muvaffaqiyatli")
     })
     
     elEditForm.name.value = "";
