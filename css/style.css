@@ -284,7 +284,6 @@ label.input input[type="search"] {
   justify-content: space-between;
   padding: 15px;
   width: 300px;
-  transition: transform 1s ease; /* <-- transitionni bu yerga qo‘shish */
 }
 
 
@@ -789,4 +788,39 @@ form button:active {
 .allaqachon:hover {
   color: white;
   transition: 0.5s ease;
+}
+
+@media (max-width: 430px) {
+  .registerh1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .filter-row {
+    grid-template-columns: repeat(1,1fr);
+  }
+}
+
+@media (max-width: 370px) {
+  .registerh1 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .toastli {
+    width: 90%;      /* ekran kengligiga moslashadi */
+    padding: 12px;   /* kichikroq padding */
+    font-size: 13px; /* matn kichikroq */
+    height: auto;    /* balandlik matnga moslashadi */
+  }
+}
+
+@media (max-width: 320px) {
+  .toastli {
+    width: 95%;      /* deyarli to‘liq ekran */
+    padding: 10px;   
+    font-size: 12px;
+  }
 }
