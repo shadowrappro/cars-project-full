@@ -39,7 +39,7 @@ export function createToast(mode, message) {
         pTime.textContent = i;
         
         if (i == 0) {
-            elToastContainer.removeChild(li);
+            elToastContainer.remove(li);
         }
     }, 1000)
 

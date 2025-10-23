@@ -32,8 +32,8 @@
     <!-- Filter section -->
     <section class="container mt-[10px]">
         <div class="px-5">
-            <div class="flex items-center gap-5 pb-5 justify-between">
-                <select class="select select-primary" id="filterTypeSelect">
+            <div class="filter-row flex items-center gap-5 pb-5 justify-between">
+                <select class="filter-btn select select-primary" id="filterTypeSelect">
                     <option disabled selected>Nima bo'yicha filter qilmoqchisiz?</option>
                     <option value="year">Yil</option>
                     <option value="colorName">Rang</option>
@@ -42,7 +42,7 @@
                     <option value="category">Turkum</option>
                 </select>
 
-                <select class="hidden select select-primary" id="filterValueSelect">
+                <select class="select-carbon hidden select select-primary" id="filterValueSelect">
                     <option disabled selected>Hammasi</option>
                 </select>
 
@@ -71,150 +71,126 @@
 
     <!-- Skeleton (Loader) -->
     <div class="grid-cols-3 gap-5 container" id="loader">
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
-        <div class="card w-[450px] bg-base-50 card-md shadow-sm">
+        <div class="card skeleton-card">
           <div class="card-body">
-            <div class="skeleton h-8 w-[170px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
-            <div class="skeleton h-6 w-[430px]"></div>
+            <div class="skeleton h-6 w-2/3"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-full"></div>
+            <div class="skeleton h-5 w-5/6"></div>
+            <div class="skeleton h-5 w-3/4"></div>
           </div>
         </div>
-
     </div>
 
     <!-- Modals -->
@@ -240,7 +216,7 @@
 
     <!-- Template -->
     <template id="cardTemplate">
-        <div class="card bg-base-100 card-md shadow-sm">
+        <div class="card bg-base-100 card-md shadow-sm card-wrapper" style="position:relative;">
           <div class="card-body">
             <!-- Name -->
             <h2 class="name"></h2>
@@ -301,11 +277,10 @@
         </div>
     </template>
 
-    <div id="noData" class="hidden">
-      <img src="./images/no-data404.png" width="600px" height="600px" alt="no-data-image">
-      <p id="noDataInfo" class="no-data-info">
-        
-      </p>
+    <div id="noData" class="hidden"><span>
+      <p id="noDataInfo" class="no-data-info"></p>
+      <img class="nodataimg" src="./images/no-data404.png" width="600px" height="600px" alt="no-data-image">
+    </span>
     </div>
 
     <div class="join" id="pagination">

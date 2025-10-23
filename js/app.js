@@ -241,9 +241,11 @@ elEditForm.addEventListener("submit", (evt) => {
     const formData = new FormData(elEditForm);
     const result = {};
 
+    
     formData.forEach((value, key) => {
         result[key] = value;
     })
+    
 
     if (editedElementId) {
         result.id = editedElementId;
@@ -258,6 +260,10 @@ elEditForm.addEventListener("submit", (evt) => {
             createToast("true", "Ma'lumot muvaffaqiyatli tahrirlandi!")
         })
     }
+
+    elEditForm.name.value = "";
+    elEditForm.description.value = "";
+    elEditedElementTitle.innerText = "Tahrirlash"
 })
 
 // Pagination
